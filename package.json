@@ -1,0 +1,30 @@
+{
+  "name": "job-listing-app",
+  "version": "1.0.0",
+  "description": "A full-stack job listing application",
+  "main": "Backend/server.js",
+  "scripts": {
+    "start": "cd Backend && npm start",
+    "dev": "cd Backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "server": "cd Backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "install-client": "cd frontend && npm install",
+    "install-server": "cd Backend && npm install",
+    "install-all": "npm run install-server && npm run install-client",
+    "seed": "cd Backend && npm run seed"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.2",
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.16"
+  }
+}
