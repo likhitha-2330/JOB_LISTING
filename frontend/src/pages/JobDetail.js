@@ -122,12 +122,12 @@ export default function JobDetail() {
 
       {/* Action Buttons */}
       <div className="bg-white rounded-2xl shadow-lg p-6 sticky bottom-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4 w-full sm:w-auto">
             {job.company?.website && (
               <button
                 onClick={() => window.open(job.company.website, "_blank")}
-                className="px-6 py-3 rounded-lg border-2 border-gray-300 hover:border-indigo-500 hover:text-indigo-600 transition font-medium flex items-center gap-2"
+                className="w-full sm:w-auto px-6 py-3 rounded-lg border-2 border-gray-300 hover:border-indigo-500 hover:text-indigo-600 transition font-medium flex items-center justify-center gap-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -141,7 +141,7 @@ export default function JobDetail() {
             <button
               onClick={handleApply}
               disabled={applying}
-              className={`px-8 py-3 rounded-lg font-semibold transition-all ${
+              className={`w-full sm:w-auto px-8 py-3 rounded-lg font-semibold transition-all ${
                 isApplied
                   ? 'bg-green-50 text-green-700 border-2 border-green-200 hover:bg-green-100'
                   : 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white hover:scale-105 shadow-lg'
@@ -154,7 +154,7 @@ export default function JobDetail() {
           {!user && (
             <button
               onClick={() => navigate('/login')}
-              className="px-8 py-3 rounded-lg font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white hover:scale-105 transition-all shadow-lg"
+              className="w-full sm:w-auto px-8 py-3 rounded-lg font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white hover:scale-105 transition-all shadow-lg"
             >
               Sign In to Apply
             </button>

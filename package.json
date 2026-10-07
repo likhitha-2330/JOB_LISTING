@@ -4,14 +4,14 @@
   "description": "A full-stack job listing application",
   "main": "Backend/server.js",
   "scripts": {
-    "start": "cd Backend && npm start",
-    "dev": "cd Backend && npm run dev",
+    "start": "node Backend/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "cd frontend && npm start",
     "server": "cd Backend && npm run dev",
     "build": "cd frontend && npm run build",
+    "install-all": "npm install && npm run install-server && npm run install-client",
     "install-client": "cd frontend && npm install",
     "install-server": "cd Backend && npm install",
-    "install-all": "npm run install-server && npm run install-client",
     "seed": "cd Backend && npm run seed"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "nodemon": "^3.1.10"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.16"
+    "@tailwindcss/postcss": "^4.1.16",
+    "concurrently": "^10.0.5"
   }
 }

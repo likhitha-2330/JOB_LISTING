@@ -12,16 +12,16 @@ export default function ApplicationCard({ application }) {
   }[status] || "bg-gray-100 text-gray-700";
 
   return (
-    <article className="bg-white rounded-2xl shadow-lg p-4 hover:shadow-2xl transition-all flex justify-between items-center">
+    <article className="bg-white rounded-2xl shadow-lg p-4 hover:shadow-2xl transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div>
-        <Link to={`/jobs/${job._id}`} className="text-lg font-semibold text-indigo-600">
+        <Link to={`/jobs/${job._id}`} className="text-lg font-semibold text-indigo-600 hover:underline">
           {job.title}
         </Link>
-        <div className="text-sm text-gray-500">{job.company?.name} • {formatLocation(job.location)}</div>
+        <div className="text-sm text-gray-500 mt-1">{job.company?.name} • {formatLocation(job.location)}</div>
       </div>
 
-      <div className="text-right">
-        <div className={`inline-block px-3 py-1 rounded-full text-sm ${statusColor}`}>{status}</div>
+      <div className="text-left sm:text-right">
+        <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${statusColor}`}>{status}</div>
         <div className="text-xs text-gray-400 mt-1">{new Date(createdAt).toLocaleDateString()}</div>
       </div>
     </article>

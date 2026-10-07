@@ -66,6 +66,7 @@ export default function EmployerDashboard() {
     }
     fetchJobs();
     fetchApplications();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, user, navigate]);
 
   // safeJobs always an array
@@ -200,23 +201,16 @@ export default function EmployerDashboard() {
         )}
 
         <div>
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center',
-            marginBottom: '20px',
-            paddingBottom: '12px',
-            borderBottom: '2px solid #e0e0e0'
-          }}>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 pb-3 border-b-2 border-gray-200 gap-4">
             <div>
-              <h2 style={{ margin: 0, fontSize: '24px', fontWeight: '600' }}>My Posted Jobs</h2>
-              <p style={{ margin: '4px 0 0 0', fontSize: '14px', color: '#666' }}>
+              <h2 className="m-0 text-2xl font-semibold">My Posted Jobs</h2>
+              <p className="m-0 mt-1 text-sm text-gray-500">
                 Jobs you have created and are managing
               </p>
             </div>
-            <div style={{ textAlign: 'right' }}>
-              <p style={{ margin: 0, fontSize: '28px', fontWeight: '700', color: '#4f46e5' }}>{jobs.length}</p>
-              <p style={{ margin: 0, fontSize: '12px', color: '#888' }}>Total Jobs</p>
+            <div className="text-left sm:text-right">
+              <p className="m-0 text-3xl font-bold text-indigo-600">{jobs.length}</p>
+              <p className="m-0 text-xs text-gray-400">Total Jobs</p>
             </div>
           </div>
           

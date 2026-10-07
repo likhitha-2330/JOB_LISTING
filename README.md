@@ -610,54 +610,45 @@ For complete API documentation with request/response examples, see [API_DOCUMENT
 
 ---
 
-## 🚀 Deployment
+## 🚀 Deployment (100% Free)
 
-### Backend Deployment (Heroku Example)
+### Backend Deployment (Render - Free Tier)
 
-1. Install Heroku CLI
-2. Login to Heroku:
-   ```bash
-   heroku login
-   ```
+Render provides a completely free tier for Node.js Web Services.
 
-3. Create new app:
-   ```bash
-   cd Backend
-   heroku create your-app-name
-   ```
+1. Create a free account at [Render](https://render.com/)
+2. Connect your GitHub account and click **New > Web Service**
+3. Select this repository.
+4. Set the following configuration:
+   - **Root Directory**: `Backend`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+5. Click **Advanced** and add your environment variables:
+   - `MONGO_URI`: `<your-mongodb-atlas-uri>`
+   - `JWT_SECRET`: `<generate-a-secure-secret>`
+6. Deploy! Render will give you a live URL (e.g., `https://joblisting-api.onrender.com`).
 
-4. Set environment variables:
-   ```bash
-   heroku config:set MONGO_URI=<your-mongodb-atlas-uri>
-   heroku config:set JWT_SECRET=<your-secret>
-   ```
+### Frontend Deployment (Vercel - Free Tier)
 
-5. Deploy:
-   ```bash
-   git push heroku main
-   ```
+Vercel is the best free hosting for React applications. A `vercel.json` is already included to handle React Router client-side routing.
 
-### Frontend Deployment (Netlify/Vercel)
+1. Create a free account at [Vercel](https://vercel.com/)
+2. Click **Add New > Project** and import this repository.
+3. Set the following configuration:
+   - **Framework Preset**: Create React App
+   - **Root Directory**: `frontend`
+4. Expand **Environment Variables** and add:
+   - `REACT_APP_API_URL`: `<your-render-backend-url>/api` (e.g., `https://joblisting-api.onrender.com/api`)
+5. Click **Deploy**. Vercel will automatically build and publish your frontend.
 
-1. Build the frontend:
-   ```bash
-   cd frontend
-   npm run build
-   ```
+### Database (MongoDB Atlas - Free Tier)
 
-2. Deploy the `build` folder to your hosting service
-
-3. Set environment variable:
-   ```
-   REACT_APP_API_URL=<your-backend-url>
-   ```
-
-### Database (MongoDB Atlas)
-
-1. Create account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create a cluster
-3. Get connection string
-4. Update `MONGO_URI` in your environment variables
+1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Create a **Shared / Free (M0) Cluster**
+3. Create a Database User with a password in Database Access.
+4. Go to **Network Access** and add IP `0.0.0.0/0` (allow access from anywhere) so Render can connect.
+5. Click **Connect > Connect your application** and copy the URI string.
+6. Paste this string as your `MONGO_URI` in Render and locally.
 
 ---
 

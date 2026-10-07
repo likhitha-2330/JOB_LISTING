@@ -8,11 +8,12 @@ export default function ProfileSimple() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Removed unused error state
 
 
   useEffect(() => {
     loadProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadProfile = async () => {
@@ -68,10 +69,7 @@ export default function ProfileSimple() {
     );
   }
 
-  if (error) {
-    // Don't show error screen, just redirect or show empty
-    return null;
-  }
+  // Removed error check
 
   if (!profile) {
     return (

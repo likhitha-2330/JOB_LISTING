@@ -39,10 +39,20 @@ exports.create = async (req, res) => {
     const payload = req.body || {};
     payload.employer = req.user._id;
     payload.postedBy = req.user._id;
+    
+    // Assign company from employer's profile
+    if (!req.user.company) {
+      return res.status(400).json({ message: 'You must set up your company profile before posting jobs.' });
+    }
+    payload.company = req.user.company;
+    
     const job = await Job.create(payload);
     res.status(201).json(job);
   } catch (err) {
-    console.error(err);
+    console.error('Job creation error:', err);
+    if (err.name === 'ValidationError') {
+      return res.status(400).json({ message: Object.values(err.errors).map(val => val.message).join(', ') });
+    }
     res.status(500).json({ message: 'Could not create job' });
   }
 };

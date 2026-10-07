@@ -138,7 +138,7 @@ userSchema.virtual('profileCompleteness').get(function() {
 });
 
 // Index for better query performance
-userSchema.index({ email: 1 });
+
 userSchema.index({ role: 1 });
 userSchema.index({ 'location.city': 1, 'location.state': 1 });
 

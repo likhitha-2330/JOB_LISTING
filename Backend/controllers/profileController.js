@@ -39,6 +39,10 @@ exports.upsertMyProfile = async (req, res) => {
         { $set: payload },
         { new: true, upsert: true, setDefaultsOnInsert: true }
       );
+      
+      // Link company to user profile
+      await User.findByIdAndUpdate(userId, { company: company._id });
+      
       return res.json(company);
     } else {
       const profile = await SeekerProfile.findOneAndUpdate(

@@ -9,8 +9,8 @@ export default function JobCard({ job }) {
   const { user } = useContext(AuthContext);
   const { hasApplied, markAsApplied } = useApplications();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [isSaved, setIsSaved] = useState(false);
+  // Removed unused error state
+  // Removed unused isSaved state
   const navigate = useNavigate();
   
   const isApplied = hasApplied(job._id);
@@ -33,13 +33,13 @@ export default function JobCard({ job }) {
     
     try {
       setLoading(true);
-      setError('');
+
       await applyJob(job._id);
       markAsApplied(job._id);
       alert('Applied successfully!');
     } catch (err) {
       const errorMessage = err.response?.data?.message || 'Failed to apply for job';
-      setError(errorMessage);
+
       
       if (err.response?.status === 401) {
         navigate('/login');
@@ -54,10 +54,7 @@ export default function JobCard({ job }) {
     }
   };
 
-  const handleSaveJob = () => {
-    setIsSaved(!isSaved);
-    // TODO: Implement save/unsave functionality
-  };
+  // Removed handleSaveJob
 
   const formatSalary = (salary) => {
     if (!salary) return 'Salary not specified';

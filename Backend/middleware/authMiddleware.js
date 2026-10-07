@@ -1,5 +1,5 @@
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const { sessions } = require('../controllers/authController');
 
 const protect = async function (req, res, next) {
   const authHeader = req.headers.authorization;
@@ -7,18 +7,11 @@ const protect = async function (req, res, next) {
     return res.status(401).json({ message: 'No token provided' });
 
   const token = authHeader.split(' ')[1];
-  
-  // Check if session exists
-  const session = sessions.get(token);
-  if (!session) {
-    return res.status(401).json({ message: 'Invalid session' });
-  }
 
   try {
-    // Get user from session
-    const user = await User.findById(session.userId).select('-password');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
+    const user = await User.findById(decoded.userId).select('-password');
     if (!user) {
-      sessions.delete(token); // Clean up invalid session
       return res.status(401).json({ message: 'User not found' });
     }
     
@@ -38,17 +31,15 @@ const optionalAuth = async function (req, res, next) {
   }
 
   const token = authHeader.split(' ')[1];
-  const session = sessions.get(token);
   
-  if (session) {
-    try {
-      const user = await User.findById(session.userId).select('-password');
-      if (user) {
-        req.user = user;
-      }
-    } catch (err) {
-      console.error('Optional auth error:', err);
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
+    const user = await User.findById(decoded.userId).select('-password');
+    if (user) {
+      req.user = user;
     }
+  } catch (err) {
+    console.error('Optional auth error:', err);
   }
   
   next();
